@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Tasky Lite</string>
+    <string name="title_activity_todo_item">Task</string>
+</resources>

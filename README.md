@@ -17,6 +17,31 @@ Appium-Android:
 - Upload to App Center!
 - Weid ID we're using for looking up the list item. Perhaps use the class? (android.widget.CheckedTextView)
 
+Browser example
+---------------
+Install [ChromeDriver](http://chromedriver.storage.googleapis.com/index.html), make sure to put it in `PATH`.
+
+Start server: `bundle exec ruby server.rb`
+
+Run tests: `bundle exec rspec`
+
+Potential test:
+
+```ruby
+  it 'can add new tasks' do
+    fill_in 'name', with: 'Sleep'
+    click_button 'Add'
+
+    fill_in 'name', with: 'Wake up'
+    click_button 'Add'
+
+    expect(body).to include('Sleep')
+    expect(body).to include('Wake up')
+  end
+```
+
+In `spec_helper.rb`, try setting `Capybara.default_driver` to `:selenium_chrome_headless`.
+
 Mobile testing
 ==============
 We're primarily using the Tasky app from the [mobile-samples repository](https://github.com/xamarin/mobile-samples).

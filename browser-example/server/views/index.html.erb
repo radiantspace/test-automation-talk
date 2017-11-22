@@ -1,0 +1,17 @@
+<html>
+  <head><title>Tasky Lite</title></head>
+  <body>
+    <h1>Tasks</h1>
+    <% for task in tasks %>
+      <p><%= task %></p>
+    <% end %>
+
+    <form action="/add_task" method="post">
+      <input type="text" name="name">
+      <input type="submit" value="Add"></input>
+    </form>
+    <form action="/clear" method="post">
+      <input type="submit" value="Clear"></form>
+    </form>
+  </body>
+</html>

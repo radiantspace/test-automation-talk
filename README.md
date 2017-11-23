@@ -55,9 +55,7 @@ First of all, add the Xamarin.TestCloud.Agent package to the TaskyiOS project, a
 method of `AppDelegate`:
 
 ```
-            #if ENABLE_TEST_CLOUD
             Xamarin.Calabash.Start();
-            #endif
 ```
 
 Build TaskyiOS.

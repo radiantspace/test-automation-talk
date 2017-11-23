@@ -49,6 +49,61 @@ This is a Xamarin project. However, neither Espresso nor XCUITest has proper too
 I had to re-build Tasky in Java for Android and Swift for iOS. (We're talking _very_ limited versions of the app
 where you're only able to add to-do items!)
 
+Xamarin.UITest iOS
+------------------
+First of all, add the Xamarin.TestCloud.Agent package to the TaskyiOS project, and add this to the `FinishedLaunching`
+method of `AppDelegate`:
+
+```
+            #if ENABLE_TEST_CLOUD
+            Xamarin.Calabash.Start();
+            #endif
+```
+
+Build TaskyiOS.
+
+In Visual Studio, right-click the solution and choose "New project". Select iOS -> Tests -> UI Test App. Update the Xamarin.UITest package.
+
+In the Unit Test window, add a project reference to TaskyiOS.
+
+Potential test:
+
+```
+        [Test]
+        public void CanAddTask()
+        {
+            app.Tap(c => c.Marked("Add"));
+
+            app.EnterText(c => c.Marked("Name"), "Sleep");
+            app.Tap(c => c.Marked("Save"));
+
+            app.WaitForElement(c => c.Marked("Add"));
+            app.WaitForElement(c => c.Text("Sleep"));
+        }
+```
+
+Xamarin.UITest Android
+----------------------
+In Visual Studio, right-click the solution and choose "New project". Select Android -> Tests -> UI Test App. Update the Xamarin.UITest package.
+
+In the Unit Test window, add a project reference to TaskyAndroid.
+
+Potential test:
+
+```
+        [Test]
+        public void CanAddTask()
+        {
+            app.Tap(c => c.Marked("AddButton"));
+
+            app.EnterText(c => c.Marked("NameText"), "Sleep");
+            app.Tap(c => c.Marked("SaveButton"));
+
+            app.WaitForElement(c => c.Marked("AddButton"));
+            app.WaitForElement(c => c.Text("Sleep"));
+        }
+```
+
 appium-android
 --------------
 You need to create an `.apk` with the Tasky app. From Visual Studio, select `Build` -> `Archive for Publishing`,

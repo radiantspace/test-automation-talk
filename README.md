@@ -17,6 +17,58 @@ Appium-Android:
 - Upload to App Center!
 - Weid ID we're using for looking up the list item. Perhaps use the class? (android.widget.CheckedTextView)
 
+Ruby example
+------------
+Run tests: `bundle exec rspec`
+
+Potential code:
+
+```
+class Order
+  def initialize
+    @sum = 0
+  end
+
+  def sum
+    @sum
+  end
+
+  def add_line(description, amount)
+    @sum += amount
+  end
+end
+```
+
+Potential test:
+
+```
+require 'order'
+
+RSpec.describe Order do
+  subject { Order.new }
+
+  context 'newly created' do
+    it 'is free' do
+      expect(subject.sum).to eq(0)
+    end
+  end
+
+  context 'with lines' do
+    before do
+      subject.add_line('Carpets', 42)
+      subject.add_line('Cleaners', 15)
+    end
+
+    it 'know the sum' do
+      expect(subject.sum).to eq(57)
+    end
+  end
+end
+```
+
+Run continuously in RubyMine by right-clicking the `specs` folder, selecting `Run` -> `All specs`, then
+selecting the "Toggle auto-test" button just beneath the "play" button to the left.
+
 Browser example
 ---------------
 Install [ChromeDriver](http://chromedriver.storage.googleapis.com/index.html), make sure to put it in `PATH`.

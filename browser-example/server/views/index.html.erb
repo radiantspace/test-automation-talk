@@ -1,17 +1,33 @@
 <html>
-  <head><title>Tasky Lite</title></head>
+  <head>
+    <title>Tasky Lite</title>
+    <style>
+      body {
+        background-color: #CFEFA7;
+      }
+      h1 {
+        background-color: #6FA22E;
+      }
+      #content {
+        margin: auto;
+        width: 50%;
+      }
+    </style>
+  </head>
   <body>
-    <h1>Tasks</h1>
-    <% for task in tasks %>
-      <p><%= task %></p>
-    <% end %>
+    <div id="content">
+      <h1>Tasks</h1>
+      <% for task in tasks %>
+        <p><%= task %></p>
+      <% end %>
 
-    <form action="/add_task" method="post">
-      <input type="text" name="name">
-      <input type="submit" value="Add"></input>
-    </form>
-    <form action="/clear" method="post">
-      <input type="submit" value="Clear"></form>
-    </form>
+      <form action="/add_task" method="post">
+        <input type="text" name="name">
+        <input type="submit" value="Add"></input>
+      </form>
+      <form action="/clear" method="post">
+        <input type="submit" value="Clear"></form>
+      </form>
+    </div>
   </body>
 </html>

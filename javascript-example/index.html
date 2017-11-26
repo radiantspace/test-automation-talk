@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <link rel="shortcut icon" type="image/png" href="jasmine/lib/jasmine-2.8.0/jasmine_favicon.png">
+        <link rel="stylesheet" type="text/css" href="jasmine/lib/jasmine-2.8.0/jasmine.css">
+
+        <script type="text/javascript" src="jasmine/lib/jasmine-2.8.0/jasmine.js"></script>
+        <script type="text/javascript" src="jasmine/lib/jasmine-2.8.0/jasmine-html.js"></script>
+        <script type="text/javascript" src="jasmine/lib/jasmine-2.8.0/boot.js"></script>
+
+        <script type="text/javascript">
+function Order() {
+    this.sum = 0;
+    this.addLine = function(name, amount) {
+        this.sum += amount;
+    };
+}
+        </script>
+
+        <script type="text/javascript">
+describe('order', function () {
+    beforeEach(function () {
+        this.subject = new Order();
+    });
+
+    describe('newly created', function () {
+        it('is free', function () {
+            expect(this.subject.sum).toEqual(0);
+        });
+    });
+
+    describe('with lines', function() {
+        beforeEach(function() {
+            this.subject.addLine('Carpets', 42);
+            this.subject.addLine('Cleaners', 15);
+        });
+
+        it('knows the sum', function() {
+            expect(this.subject.sum).toEqual(57);
+        });
+    });
+});
+        </script>
+    </head>
+
+    <body></body>
+</html>

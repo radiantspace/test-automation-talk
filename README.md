@@ -59,7 +59,7 @@ RSpec.describe Order do
       subject.add_line('Cleaners', 15)
     end
 
-    it 'know the sum' do
+    it 'knows the sum' do
       expect(subject.sum).to eq(57)
     end
   end
@@ -68,6 +68,10 @@ end
 
 Run continuously in RubyMine by right-clicking the `specs` folder, selecting `Run` -> `All specs`, then
 selecting the "Toggle auto-test" button just beneath the "play" button to the left.
+
+JavaScript example
+------------------
+Just load the `index.html` file, reload to re-test. Try breaking the test.
 
 Browser example
 ---------------

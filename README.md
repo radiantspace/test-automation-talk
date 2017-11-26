@@ -23,7 +23,7 @@ Run tests: `bundle exec rspec`
 
 Potential code:
 
-```
+```ruby
 class Order
   def initialize
     @sum = 0
@@ -41,7 +41,7 @@ end
 
 Potential test:
 
-```
+```ruby
 require 'order'
 
 RSpec.describe Order do
@@ -72,6 +72,30 @@ selecting the "Toggle auto-test" button just beneath the "play" button to the le
 JavaScript example
 ------------------
 Just load the `index.html` file, reload to re-test. Try breaking the test.
+
+Cucumber example
+----------------
+First run the tests, watch the really nice and helpful error message appear.
+
+Potential steps:
+
+```ruby
+require 'order'
+
+Given('I have an order') do
+  @order = Order.new
+end
+
+Then('I need to pay {int} dollars') do |int|
+  if @order.sum != int
+    raise "Expected to pay #{int} dollars, was #{@order.sum}"
+  end
+end
+
+Given('I add for {int} dollars {string}') do |amount, name|
+  @order.add_line(name, amount)
+end
+```
 
 Browser example
 ---------------
@@ -122,7 +146,7 @@ In the Unit Test window, add a project reference to TaskyiOS.
 
 Potential test:
 
-```
+```C#
         [Test]
         public void CanAddTask()
         {
@@ -144,7 +168,7 @@ In the Unit Test window, add a project reference to TaskyAndroid.
 
 Potential test:
 
-```
+```C#
         [Test]
         public void CanAddTask()
         {
@@ -170,7 +194,7 @@ Then run `mvn test` to run the test.
 
 Possible test:
 
-```
+```Java
     @Test
     public void canAddTask() throws Exception {
         driver.findElement(By.id("AddButton")).click();
@@ -195,7 +219,7 @@ Run the tests using `mvn test`.
 
 Possible test:
 
-```
+```Java
     @Test
     public void canAddTask() throws Exception {
         driver.findElement(By.id("Add")).click();
@@ -219,13 +243,13 @@ recording the test, add a new task and call it e.g. "Sleep".
 To make sure that we're validating the creation of a new list item, add this line to the
 generated test:
 
-```
+```Java
         onView(allOf(withId(R.id.listItemTask), withText("Sleep"))).check(matches(isDisplayed()));
 ```
 
 The generated code is very bloated and can be squashed into
 
-```
+```Java
     @Test
     public void homeActivityTest() {
         onView(withId(R.id.AddButton)).perform(click());
@@ -245,7 +269,7 @@ Open the `xcuitestexampleUITests.swift` file, go to the `testExample()` method, 
 
 The test ends up looking something like this:
 
-```
+```Swift
     func testExample() {
         let app = XCUIApplication()
         app.navigationBars["Tasky Lite"].buttons["Add"].tap()
@@ -259,15 +283,14 @@ The test ends up looking something like this:
 
 For it to verify that the new item is indeed created, you should add this to the test method:
 
-```
-
+```Swift
         waitForText(app: app, text: "Aflevere børn")
         waitForText(app: app, text: "Sleep")
 ```
 
 ...and create this new method:
 
-```
+```Swift
     func waitForText(app: XCUIApplication, text: String) {
         let label = app.staticTexts[text]
         let exists = NSPredicate(format: "exists == 1")

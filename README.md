@@ -3,6 +3,13 @@ What?
 Example code from my "Test Automation" talk. There's some Ruby unit test using RSpec, some Cucumber
 unit testing, WebDriver test, and a bunch of mobile testing.
 
+Before running the presentation
+===============================
+- Reset the Tasky repository.
+- Reset this repository.
+- Start up Android emulator.
+- Start Sinatra server from browser example.
+
 TODO
 ====
 Espresso:
@@ -294,10 +301,21 @@ For it to verify that the new item is indeed created, you should add this to the
     func waitForText(app: XCUIApplication, text: String) {
         let label = app.staticTexts[text]
         let exists = NSPredicate(format: "exists == 1")
-        
+
         expectation(for: exists, evaluatedWith: label, handler: nil)
         waitForExpectations(timeout: 5, handler: nil)
     }
 ```
 
-It doesn't seem like XCUITest has a nice, built-in way to wait for e.g. text.
+...or this longer version which uses XCTWaiter, which Apple loves:
+
+```Swift
+    func waitForText(app: XCUIApplication, text: String) {
+        let label = app.staticTexts[text]
+        let exists = NSPredicate(format: "exists == 1")
+        let exp = expectation(for: exists, evaluatedWith: label, handler: nil)
+
+        let result = XCTWaiter.wait(for: [exp], timeout: 5)
+        XCTAssertEqual(XCTWaiter.Result.completed, result)
+    }
+```

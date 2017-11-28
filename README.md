@@ -22,7 +22,7 @@ XCUITest:
 
 Appium-Android:
 - Upload to App Center!
-- Weid ID we're using for looking up the list item. Perhaps use the class? (android.widget.CheckedTextView)
+- Weird ID we're using for looking up the list item. Perhaps use the class? (android.widget.CheckedTextView)
 
 Ruby example
 ------------

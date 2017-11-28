@@ -136,6 +136,33 @@ This is a Xamarin project. However, neither Espresso nor XCUITest has proper too
 I had to re-build Tasky in Java for Android and Swift for iOS. (We're talking _very_ limited versions of the app
 where you're only able to add to-do items!)
 
+Xamarin.UITest Android
+----------------------
+In Visual Studio, right-click the solution and choose "New project". Select Android -> Tests -> UI Test App.
+
+*** Update the Xamarin.UITest package! ***
+
+In the Unit Test window, add a project reference to TaskyAndroid.
+
+In the test method, add the line `app.Repl()`. Then start the test, and from the repl do `tree` to see the current
+view tree. Do `app.Tap(...)` etc. to get to where we want. Then do `copy`, and paste the result back to the test.
+
+Potential test:
+
+```C#
+        [Test]
+        public void CanAddTask()
+        {
+            app.Tap(c => c.Id("AddButton"));
+
+            app.EnterText(c => c.Id("NameText"), "Sleep");
+            app.Tap(c => c.Id("SaveButton"));
+
+            app.WaitForElement(c => c.Id("AddButton"));
+            Assert.IsNotNull(app.Query(c => c.Text("Sleep")).Single());
+        }
+```
+
 Xamarin.UITest iOS
 ------------------
 First of all, add the Xamarin.TestCloud.Agent package to the TaskyiOS project, and add this to the `FinishedLaunching`
@@ -167,28 +194,6 @@ Potential test:
         }
 ```
 
-Xamarin.UITest Android
-----------------------
-In Visual Studio, right-click the solution and choose "New project". Select Android -> Tests -> UI Test App. Update the Xamarin.UITest package.
-
-In the Unit Test window, add a project reference to TaskyAndroid.
-
-Potential test:
-
-```C#
-        [Test]
-        public void CanAddTask()
-        {
-            app.Tap(c => c.Marked("AddButton"));
-
-            app.EnterText(c => c.Marked("NameText"), "Sleep");
-            app.Tap(c => c.Marked("SaveButton"));
-
-            app.WaitForElement(c => c.Marked("AddButton"));
-            app.WaitForElement(c => c.Text("Sleep"));
-        }
-```
-
 appium-android
 --------------
 You need to create an `.apk` with the Tasky app. From Visual Studio, select `Build` -> `Archive for Publishing`,
@@ -205,7 +210,7 @@ Possible test:
     @Test
     public void canAddTask() throws Exception {
         driver.findElement(By.id("AddButton")).click();
-        WebElement nameElement = driver.findElement(By.id("NameText"));
+        MobileElement nameElement = driver.findElement(By.id("NameText"));
         nameElement.click();
         nameElement.sendKeys("Sleep");
         driver.findElement(By.id("SaveButton")).click();
@@ -214,6 +219,14 @@ Possible test:
         Assert.assertEquals("Sleep", driver.findElement(By.id("android:id/text1")).getAttribute("text"));
     }
 ```
+
+The last line could instead be
+
+```Java
+        Assert.assertNotNull(driver.findElement(By.xpath("//*[@name='Sleep']")));
+```
+
+Don't know if that is more readable.
 
 appium-ios
 ----------
@@ -230,7 +243,7 @@ Possible test:
     @Test
     public void canAddTask() throws Exception {
         driver.findElement(By.id("Add")).click();
-        WebElement nameElement = driver.findElement(By.id("Name"));
+        MobileElement nameElement = driver.findElement(By.id("Name"));
         nameElement.click();
         nameElement.sendKeys("Sleep");
         driver.findElement(By.id("Save")).click();
@@ -238,6 +251,12 @@ Possible test:
         Assert.assertNotNull(driver.findElement(By.id("Add")));
         Assert.assertEquals("Sleep", driver.findElement(By.id("Sleep")).getAttribute("value"));
     }
+```
+
+The last line could instead be
+
+```Java
+        Assert.assertNotNull(driver.findElement(By.xpath("//*[@name='Sleep']")));
 ```
 
 Espresso
@@ -253,6 +272,9 @@ generated test:
 ```Java
         onView(allOf(withId(R.id.listItemTask), withText("Sleep"))).check(matches(isDisplayed()));
 ```
+
+(Technically, this line should probably use `onData`, just in case we're running on a device
+which does not have screen real estate to show our list item.)
 
 The generated code is very bloated and can be squashed into
 

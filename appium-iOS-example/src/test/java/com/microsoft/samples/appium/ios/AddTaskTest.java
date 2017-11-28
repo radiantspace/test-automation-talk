@@ -2,6 +2,7 @@ package com.microsoft.samples.appium.ios;
 
 import com.xamarin.testcloud.appium.EnhancedIOSDriver;
 import com.xamarin.testcloud.appium.Factory;
+import io.appium.java_client.MobileElement;
 import org.junit.*;
 import org.junit.experimental.categories.Category;
 import org.junit.rules.TestWatcher;
@@ -18,7 +19,7 @@ public class AddTaskTest {
     @Rule
     public TestWatcher watcher = Factory.createWatcher();
 
-    private static EnhancedIOSDriver<WebElement> driver;
+    private static EnhancedIOSDriver<MobileElement> driver;
 
     @Before
     public void before() throws Exception {

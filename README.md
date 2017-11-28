@@ -291,31 +291,6 @@ The test ends up looking something like this:
 For it to verify that the new item is indeed created, you should add this to the test method:
 
 ```Swift
-        waitForText(app: app, text: "Aflevere børn")
-        waitForText(app: app, text: "Sleep")
-```
-
-...and create this new method:
-
-```Swift
-    func waitForText(app: XCUIApplication, text: String) {
-        let label = app.staticTexts[text]
-        let exists = NSPredicate(format: "exists == 1")
-
-        expectation(for: exists, evaluatedWith: label, handler: nil)
-        waitForExpectations(timeout: 5, handler: nil)
-    }
-```
-
-...or this longer version which uses XCTWaiter, which Apple loves:
-
-```Swift
-    func waitForText(app: XCUIApplication, text: String) {
-        let label = app.staticTexts[text]
-        let exists = NSPredicate(format: "exists == 1")
-        let exp = expectation(for: exists, evaluatedWith: label, handler: nil)
-
-        let result = XCTWaiter.wait(for: [exp], timeout: 5)
-        XCTAssertEqual(XCTWaiter.Result.completed, result)
-    }
+        XCTAssertTrue(app.staticTexts["Aflevere børn"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.staticTexts["Sove"].waitForExistence(timeout: 5))
 ```

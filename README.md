@@ -90,8 +90,6 @@ Run the tests (`bundle exec cucumber`), watch the really nice and helpful error 
 Potential steps:
 
 ```ruby
-require 'order'
-
 Given('I have an order') do
   @order = Order.new
 end

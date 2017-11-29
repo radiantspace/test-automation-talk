@@ -82,7 +82,10 @@ Just load the `index.html` file, reload to re-test. Try breaking the test.
 
 Cucumber example
 ----------------
-First run the tests, watch the really nice and helpful error message appear.
+Look at the project structure. I already created the `Order` class, so we'll be focusing entirely on the
+Cucumber part of it.
+
+Run the tests (`bundle exec cucumber`), watch the really nice and helpful error message appear.
 
 Potential steps:
 

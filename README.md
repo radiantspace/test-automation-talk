@@ -7,22 +7,9 @@ Before running the presentation
 ===============================
 - Reset the Tasky repository.
 - Reset this repository.
-- Start up Android emulator.
+- Start up Android emulator with Tasky.
+- Start up iOS emulator with Tasky.
 - Start Sinatra server from browser example.
-
-TODO
-====
-Espresso:
-- Upload to App Center!
-- "Unit testing" the "create new item" view.
-
-XCUITest:
-- Upload to App Center!
-- Waiting for elements in a nice way?
-
-Appium-Android:
-- Upload to App Center!
-- Weird ID we're using for looking up the list item. Perhaps use the class? (android.widget.CheckedTextView)
 
 Ruby example
 ------------

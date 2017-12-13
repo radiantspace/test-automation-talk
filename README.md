@@ -293,6 +293,6 @@ The test ends up looking something like this:
 For it to verify that the new item is indeed created, you should add this to the test method:
 
 ```Swift
-        XCTAssertTrue(app.staticTexts["Aflevere børn"].waitForExistence(timeout: 5))
+        XCTAssertTrue(app.navigationBars.buttons["Add"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["Sove"].waitForExistence(timeout: 5))
 ```

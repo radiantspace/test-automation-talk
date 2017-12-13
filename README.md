@@ -204,17 +204,9 @@ Possible test:
         driver.findElement(By.id("SaveButton")).click();
 
         Assert.assertNotNull(driver.findElement(By.id("AddButton")));
-        Assert.assertEquals("Sleep", driver.findElement(By.id("android:id/text1")).getAttribute("text"));
+        Assert.assertNotNull(driver.findElement(By.xpath("//*[@text='Sleep']")));
     }
 ```
-
-The last line could instead be
-
-```Java
-        Assert.assertNotNull(driver.findElement(By.xpath("//*[@name='Sleep']")));
-```
-
-Don't know if that is more readable.
 
 appium-ios
 ----------

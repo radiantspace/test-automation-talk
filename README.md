@@ -208,6 +208,14 @@ Possible test:
     }
 ```
 
+Note: Adding
+
+```Java
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+```
+
+to the `before()` method will make everything work much more stable...
+
 appium-ios
 ----------
 You need to create an `.app` file from Tasky. When you've run Tasky on a simulator, you can copy the file

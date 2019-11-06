@@ -35,6 +35,7 @@ public class AddTaskTest {
         URL url = new URL("http://localhost:4723/wd/hub");
 
         driver = Factory.createAndroidDriver(url, capabilities);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
     @After

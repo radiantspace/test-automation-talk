@@ -44,4 +44,8 @@ public class AddTaskTest {
             driver.quit();
         }
     }
+
+    @Test
+    public void canAddTask() throws Exception {
+    }
 }

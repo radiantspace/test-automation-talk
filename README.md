@@ -10,7 +10,7 @@ Before running the presentation
 
 Ruby example
 ------------
-Run tests: `bundle exec rspec`
+Run tests: `bundle exec rspec`. If you want some nice formatting: `bundle exec rspec -f d`.
 
 Potential code:
 

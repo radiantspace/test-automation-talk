@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+todos = File.exist?('.todos') ? File.readlines('.todos').map(&:strip).reject {|line| line.empty?} : []
+
+case ARGV[0]
+when 'add'
+  todos << (ARGV[1] ? ARGV[1..-1].join(' ') : (print "Which item would you like to add? "; STDIN.gets.chomp))
+  File.write('.todos', todos.join("\n"))
+when 'complete'
+  number_to_delete = ARGV[1] ? ARGV[1] : (puts "Current items:\n"; todos.each_with_index { |todo, i| puts "#{i + 1}. #{todo}" }; print "\nWhich item would you like to complete? "; STDIN.gets.chomp)
+  todos.delete_at(number_to_delete.to_i - 1)
+  File.write('.todos', todos.join("\n"))
+when 'list'
+  todos.each_with_index do |todo, i|
+    puts "#{i + 1}. #{todo}"
+  end
+else
+  puts "Invalid command. Usage: todo [add|complete|list] <item>"
+  exit 1
+end

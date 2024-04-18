@@ -89,6 +89,64 @@ Given('I add for {int} dollars {string}') do |amount, name|
 end
 ```
 
+CLI example
+-----------
+Run tests: `bundle exec rspec`
+
+These tests are using [JetBlack](https://github.com/odlp/jet_black), which has great documentation on GitHub.
+
+Potential test:
+
+```ruby
+  context "when starting up for the first time" do
+    it "has no items" do
+      result = session.run("#{command} list")
+      expect(result.stdout).to be_empty
+    end
+
+    it "can add an item by specifying it on the command-line" do
+      session.run("#{command} add Buy milk")
+
+      result = session.run("#{command} list")
+      expect(result.stdout).to include("1. Buy milk")
+    end
+
+    it "can add an item by specifying it interactively" do
+      session.run_interactive("#{command} add") do |terminal|
+        terminal.expect("Which item would you like to add?", reply: "Buy milk")
+      end
+
+      result = session.run("#{command} list")
+      expect(result.stdout).to include("1. Buy milk")
+    end
+  end
+
+  context "with a couple of items" do
+    before do
+      session.run("#{command} add Buy milk")
+      session.run("#{command} add Slice bread")
+    end
+
+    it "can complete an item by specifying the number on the command-line" do
+      session.run("#{command} complete 1")
+
+      result = session.run("#{command} list")
+      expect(result.stdout).to include("1. Slice bread")
+      expect(result.stdout).not_to include("Buy milk")
+    end
+
+    it "can complete an item by specifying the number interactively" do
+      session.run_interactive("#{command} complete") do |terminal|
+        terminal.expect("Which item would you like to complete?", reply: "1")
+      end
+
+      result = session.run("#{command} list")
+      expect(result.stdout).to include("1. Slice bread")
+      expect(result.stdout).not_to include("Buy milk")
+    end
+  end
+```
+
 Browser example
 ---------------
 Install [ChromeDriver](http://chromedriver.storage.googleapis.com/index.html), make sure to put it in `PATH`.

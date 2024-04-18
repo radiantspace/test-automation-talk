@@ -93,6 +93,8 @@ CLI example
 -----------
 Run tests: `bundle exec rspec`
 
+These tests are using [JetBlack](https://github.com/odlp/jet_black), which has great documentation on GitHub.
+
 Potential test:
 
 ```ruby

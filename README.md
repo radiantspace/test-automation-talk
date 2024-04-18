@@ -149,7 +149,7 @@ Potential test:
 
 Browser example
 ---------------
-Install [ChromeDriver](http://chromedriver.storage.googleapis.com/index.html), make sure to put it in `PATH`.
+Make sure you have Firefox installed.
 
 Start server: `bundle exec ruby server.rb`
 
@@ -170,4 +170,4 @@ Potential test:
   end
 ```
 
-In `spec_helper.rb`, try setting `Capybara.default_driver` to `:selenium_chrome_headless`.
+In `spec_helper.rb`, try setting `Capybara.default_driver` to `:selenium_headless`.

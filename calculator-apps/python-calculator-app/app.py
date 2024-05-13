@@ -16,37 +16,17 @@ def add():
 @app.route('/subtract', methods=['GET'])
 def subtract():
     """Perform subtraction"""
-    try:
-        a = float(request.args.get('a'))
-        b = float(request.args.get('b'))
-        result = a - b
-        return jsonify(result=result)
-    except Exception as e:
-        return jsonify(error=str(e))
+    # implement here
 
 @app.route('/multiply', methods=['GET'])
 def multiply():
     """Perform multiplication"""
-    try:
-        a = float(request.args.get('a'))
-        b = float(request.args.get('b'))
-        result = a * b
-        return jsonify(result=result)
-    except Exception as e:
-        return jsonify(error=str(e))
+    # implement here
 
 @app.route('/divide', methods=['GET'])
 def divide():
     """Perform division"""
-    try:
-        a = float(request.args.get('a'))
-        b = float(request.args.get('b'))
-        if b == 0:
-            raise ValueError("Cannot divide by zero.")
-        result = a / b
-        return jsonify(result=result)
-    except Exception as e:
-        return jsonify(error=str(e))
+    # implement here
 
 if __name__ == '__main__':
     app.run(debug=True)

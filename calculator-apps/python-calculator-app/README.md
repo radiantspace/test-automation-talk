@@ -10,8 +10,8 @@ This simple web-based calculator app is written in Python using Flask. It suppor
 - Flask
 
 ### Installation
-1. Clone the repository to your local machine.
-2. Navigate to the `python-calculator-app` directory.
+1. Set up a Codespace from this repo (Recommended). Alternatively, clone the repository to your local machine.
+2. Navigate to the `calculator-apps/python-calculator-app` directory.
 3. Install the required dependencies using `pip install -r requirements.txt`.
 
 ### Running the App
@@ -27,5 +27,11 @@ Unit tests are located in the `tests` directory. To run them, execute the follow
 python -m unittest discover -s tests
 ```
 
-## Contributing
-Contributions to the calculator app are welcome. Please ensure that any pull requests include unit tests covering the changes.
+Note: Initially running this command you should see how 1 test runs and passes. 
+
+# To do
+Implement the missing methods inside the `app.py` script and their respective tests in the `test_calculator.py` file. 
+
+When finishing running all tests should give you 5 passing ones! :)
+ 
+Bored? Talk to us! 

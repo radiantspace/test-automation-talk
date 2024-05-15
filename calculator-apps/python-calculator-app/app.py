@@ -28,5 +28,10 @@ def divide():
     """Perform division"""
     # implement here
 
+@app.route('/square_root', methods=['GET'])
+def square_root():
+    """Calculate square root"""
+    # implement here
+
 if __name__ == '__main__':
     app.run(debug=True)

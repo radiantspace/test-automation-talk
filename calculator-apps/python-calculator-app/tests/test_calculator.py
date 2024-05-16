@@ -27,7 +27,7 @@ class TestCalculator(unittest.TestCase):
     #def test_square_root(self):
 
     """
-        You done with the simpler tests? ... Can you make sure they handle exemptions? 
+        You done with the simpler tests? ... Can you make sure they handle exceptions? 
         1. What happens if an argument is not provided?
         2. What happens if the user provides a string instead of an integer?
         3. What if negative numbers are given to the square root GET request?
